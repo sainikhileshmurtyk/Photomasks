@@ -17,7 +17,7 @@ cm = 1e4
 Loading the files
 '''
 # Loading the Matrix
-mat_path = os.path.join("Data", "Positions", "221026 Masks", "mnistspread_bleed_221025180414_cellarray.mat")
+mat_path = os.path.join("Data", "Positions", "221129 Masks", "mnistspread_bleed_221025205444_cellarray_flipboth.mat")
 mat = io.loadmat(mat_path)
 
 # Reading cell data
@@ -27,12 +27,15 @@ net2 = mat['net2cell']
 
 # File locations
 LED_input_file = os.path.join("Data", "Positions", "positions", "LED_positions_input.h5")
+# LED_input_file = 'Data/Positions/221129 Masks/LED_positions_input_test.h5'
 LED_dev1_file = os.path.join("Data", "Positions", "positions", "LED_positions_device1.h5")
 LED_dev2_file = os.path.join("Data", "Positions", "positions", "LED_positions_device2.h5")
 
-PD_dev1_file = os.path.join("Data", "Positions", "positions", "PD_positions_device_1.h5")
-PD_dev2_file = os.path.join("Data", "Positions", "positions", "PD_positions_device_2.h5")
-PD_output_file = os.path.join("Data", "Positions", "positions", "PD_positions_output_ideal.h5")
+PD_dev1_file = os.path.join("Data", "Positions", "positions", "PD_positions_device_1_flipboth.h5")
+PD_dev2_file = os.path.join("Data", "Positions", "positions", "PD_positions_device_2_flipboth.h5")
+# PD_dev2_file = 'Data/Positions/221129 Masks/PD_positions_device_2_test.h5'
+
+PD_output_file = os.path.join("Data", "Positions", "positions", "PD_positions_output_ideal_flipboth.h5")
 
 # Loading the h5 file variables
 LED_input_h5 = h5py.File(LED_input_file, "r")
@@ -109,7 +112,7 @@ ph_mask_shifted_01 = {
 
 ph_mask_shifted_12 = {
     "type": "ph_array",
-    "led_center": LED_input_cen,
+    "led_center": LED_dev2_cen,
     "dims": (150*um, 150*um),
     "magnification": 12.5,
     "title": "Shifted Pinhole Array 1-2"
@@ -121,7 +124,7 @@ cb_mask_01 = {
     "type": "cb_array",
     "magnification": 10,
     "led_center": LED_input_cen,
-    "pd_center": PD_dev1_cen,
+    "pd_center": PD_dev2_cen,
     "box_size": (150*um, 150*um),
     "title": 'Chequerboard Mask (150um) 0-1'
 }
@@ -129,8 +132,8 @@ cb_mask_01 = {
 cb_mask_12 = {
     "type": "cb_array",
     "magnification": 12.5,
-    "led_center": LED_dev1_cen,
-    "pd_center": PD_dev2_cen,
+    "led_center": LED_dev2_cen,
+    "pd_center": PD_dev1_cen,
     "box_size": (150*um, 150*um),
     "title": 'Chequerboard Mask (150um) 1-2'
 }
@@ -138,7 +141,7 @@ cb_mask_12 = {
 cb_mask_23 = {
     "type": "cb_array",
     "magnification": 12.5,
-    "led_center": LED_dev2_cen,
+    "led_center": LED_dev1_cen,
     "pd_center": PD_output_cen,
     "box_size": (150*um, 150*um),
     "title": 'Chequerboard Mask (150um) 2-3'
@@ -150,7 +153,7 @@ weight_mask_184_01 = {
     "type": "weight_mask",
     "net": net0,
     "led_center": LED_input_cen,
-    "pd_center" : PD_dev1_cen,
+    "pd_center": PD_dev2_cen,
     "dither_size": 184*um,
     "magnification": 10,
     "title" : 'Weights (184um) 0-1'
@@ -159,8 +162,8 @@ weight_mask_184_01 = {
 weight_mask_184_12 = {
     "type": "weight_mask",
     "net": net1,
-    "led_center": LED_dev1_cen,
-    "pd_center" : PD_dev2_cen,
+    "led_center": LED_dev2_cen,
+    "pd_center": PD_dev1_cen,
     "dither_size": 184*um,
     "magnification": 12.5,
     "title" : 'Weights (184um) 1-2'
@@ -169,8 +172,8 @@ weight_mask_184_12 = {
 weight_mask_184_23 = {
     "type": "weight_mask",
     "net": net2,
-    "led_center": LED_dev2_cen,
-    "pd_center" : PD_output_cen,
+    "led_center": LED_dev1_cen,
+    "pd_center": PD_output_cen,
     "dither_size": 184*um,
     "magnification": 12.5,
     "title" : 'Weights (184um) 2-3'
@@ -181,7 +184,7 @@ weight_mask_200_01 = {
     "type": "weight_mask",
     "net": net0,
     "led_center": LED_input_cen,
-    "pd_center" : PD_dev1_cen,
+    "pd_center": PD_dev2_cen,
     "dither_size": 200*um,
     "magnification": 10,
     "title" : 'Weights (200um) 0-1'
@@ -190,8 +193,8 @@ weight_mask_200_01 = {
 weight_mask_200_12 = {
     "type": "weight_mask",
     "net": net1,
-    "led_center": LED_dev1_cen,
-    "pd_center" : PD_dev2_cen,
+    "led_center": LED_dev2_cen,
+    "pd_center": PD_dev1_cen,
     "dither_size": 200*um,
     "magnification": 12.5,
     "title" : 'Weights (200um) 1-2' 
@@ -200,8 +203,8 @@ weight_mask_200_12 = {
 weight_mask_200_23 = {
     "type": "weight_mask",
     "net": net2,
-    "led_center": LED_dev2_cen,
-    "pd_center" : PD_output_cen,
+    "led_center": LED_dev1_cen,
+    "pd_center": PD_output_cen,
     "dither_size": 200*um,
     "magnification": 12.5,
     "title" : 'Weights (200um) 2-3'
@@ -212,7 +215,7 @@ weight_mask_216_01 = {
     "type": "weight_mask",
     "net": net0,
     "led_center": LED_input_cen,
-    "pd_center" : PD_dev1_cen,
+    "pd_center": PD_dev2_cen,
     "dither_size": 216*um,
     "magnification": 10,
     "title" : 'Weights (216um) 0-1'
@@ -221,8 +224,8 @@ weight_mask_216_01 = {
 weight_mask_216_12 = {
     "type": "weight_mask",
     "net": net1,
-    "led_center": LED_dev1_cen,
-    "pd_center" : PD_dev2_cen,
+    "led_center": LED_dev2_cen,
+    "pd_center": PD_dev1_cen,
     "dither_size": 216*um,
     "magnification": 12.5,
     "title" : 'Weights (216um) 1-2'
@@ -231,8 +234,8 @@ weight_mask_216_12 = {
 weight_mask_216_23 = {
     "type": "weight_mask",
     "net": net2,
-    "led_center": LED_dev2_cen,
-    "pd_center" : PD_output_cen,
+    "led_center": LED_dev1_cen,
+    "pd_center": PD_output_cen,
     "dither_size": 216*um,
     "magnification": 12.5,
     "title" : 'Weights (216um) 2-3'
