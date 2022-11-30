@@ -103,7 +103,7 @@ ph_mask_01 = {
 }
 
 ph_mask_shifted_01 = {
-    "type": "ph_array",
+    "type": "ph_array_shifted",
     "led_center": LED_input_cen,
     "dims": (150*um, 150*um),
     "magnification": 10,
@@ -111,7 +111,7 @@ ph_mask_shifted_01 = {
 }
 
 ph_mask_shifted_12 = {
-    "type": "ph_array",
+    "type": "ph_array_shifted",
     "led_center": LED_dev2_cen,
     "dims": (150*um, 150*um),
     "magnification": 12.5,
